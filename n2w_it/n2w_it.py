@@ -3,9 +3,9 @@ import re
 
 class N2W_IT:
     def __init__(self):
-        self._cardinal_regex = re.compile("^[+-]?\d+$")
-        self._float_regex = re.compile("^[+-]?\d+\.\d+$")
-        self._ordinal_regex = re.compile("^\+?\d+\°$")
+        self._cardinal_regex = re.compile(r"^[+-]?\d+$")
+        self._float_regex = re.compile(r"^[+-]?\d+\.\d+$")
+        self._ordinal_regex = re.compile(r"^\+?\d+\°$")
 
         self._ordinal_roman_regex1 = re.compile(
             "^M{0,3}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$")
