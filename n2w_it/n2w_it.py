@@ -116,8 +116,7 @@ class N2W_IT:
         elif number < 1000000000000:
             return self.__billions_to_cardinal(number)
         else:
-            text = "Numbers over billion are not yet supported."
-            raise NotImplementedError(text)
+            raise ValueError("Numbers over billion are not yet supported.")
 
     def int_to_cardinal(self, number: int) -> str:
         text = self.__to_cardinal(number)
@@ -178,7 +177,7 @@ class N2W_IT:
 
         return self.int_to_ordinal(result)
 
-    def number_to_word(self, number: str) -> str:
+    def number_to_words(self, number: str) -> str:
         if not number:
             raise ValueError("Number cannot be null or empty.")
         elif self._cardinal_regex.match(number):

@@ -1,4 +1,5 @@
 import unittest
+
 from n2w_it import N2W_IT
 
 
@@ -29,6 +30,12 @@ class Test_N2W_IT(unittest.TestCase):
         value2 = "seicentosessantaduesimo"
 
         self.assertEqual(value1, value2)
+
+    def test_number_to_words(self):
+        function = self._instance.number_to_words
+        value = "1000000000000"
+
+        self.assertRaises(ValueError, function, value)
 
 
 if __name__ == "__main__":

@@ -28,6 +28,11 @@ setup(
         'Programming Language :: Python :: 3.8',
     ],
     description="Converts numbers to italian words.",
+    entry_points={
+        'console_scripts': [
+            'n2w-it=n2w_it.__main__:main',
+        ],
+    },
     install_requires=requirements,
     license="MIT license",
     long_description=readme + '\n\n' + history,
