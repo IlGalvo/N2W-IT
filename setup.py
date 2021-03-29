@@ -1,10 +1,25 @@
+import re
+
 from setuptools import setup, find_packages
 
-with open('README.md') as readme_file:
-    readme = readme_file.read()
 
-with open('HISTORY.md') as history_file:
-    history = history_file.read()
+PACKAGE_NAME = "n2w-it"
+
+CLASSIFIERS = [
+    'Development Status :: 5 - Production/Stable',
+    'Intended Audience :: Developers',
+    'License :: OSI Approved :: MIT License',
+    'Natural Language :: English',
+    'Programming Language :: Python :: 3',
+    'Programming Language :: Python :: 3.5',
+    'Programming Language :: Python :: 3.6',
+    'Programming Language :: Python :: 3.7',
+    'Programming Language :: Python :: 3.8',
+    'Topic :: Software Development :: Internationalization',
+    'Topic :: Software Development :: Libraries :: Python Modules',
+    'Topic :: Software Development :: Localization',
+    'Topic :: Text Processing :: Linguistic',
+]
 
 requirements = []
 
@@ -12,41 +27,53 @@ setup_requirements = []
 
 test_requirements = []
 
+
+def get_long_description():
+    with open('README.md') as readme_file:
+        readme = readme_file.read()
+
+    with open('HISTORY.md') as history_file:
+        history = history_file.read()
+
+    return readme + '\n\n' + history
+
+
+def get_version():
+    version_regex = re.compile(r'__version__ = [\'"]([^\'"]*)[\'"]')
+
+    with open("n2w_it/__init__.py", 'r') as version_file:
+        for line in version_file:
+            version = version_regex.match(line)
+
+            if version:
+                return version.group(1)
+
+
 setup(
-    author="Andrea Galvani",
-    author_email='Andrea.Galvani96@outlook.com',
-    python_requires='>=3.5',
-    classifiers=[
-        'Development Status :: 2 - Pre-Alpha',
-        'Intended Audience :: Developers',
-        'License :: OSI Approved :: MIT License',
-        'Natural Language :: English',
-        'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.5',
-        'Programming Language :: Python :: 3.6',
-        'Programming Language :: Python :: 3.7',
-        'Programming Language :: Python :: 3.8',
-    ],
+    name=PACKAGE_NAME,
+    version=get_version(),
     description="Converts numbers to italian words.",
+    long_description=get_long_description(),
+    license="MIT license",
+    author="Andrea Galvani",
+    author_email="Andrea.Galvani96@outlook.com",
+    keywords=[
+        'n2w-it',
+        'n2w_it',
+    ],
+    url='https://github.com/IlGalvo/N2W-IT',
+    packages=find_packages(include=['n2w_it', 'n2w_it.*']),
+    test_suite='tests',
     entry_points={
         'console_scripts': [
             'n2w-it=n2w_it.__main__:main',
         ],
     },
-    install_requires=requirements,
-    license="MIT license",
-    long_description=readme + '\n\n' + history,
-    include_package_data=True,
-    keywords=[
-        'n2w-it'
-        'n2w_it'
-    ],
-    name='n2w-it',
-    packages=find_packages(include=['n2w_it', 'n2w_it.*']),
+    classifiers=CLASSIFIERS,
+    python_requires='>=3.5',
     setup_requires=setup_requirements,
-    test_suite='tests',
+    install_requires=requirements,
     tests_require=test_requirements,
-    url='https://github.com/IlGalvo/N2W-IT',
-    version='0.1.0',
+    include_package_data=True,
     zip_safe=False,
 )
