@@ -56,6 +56,7 @@ setup(
     version=get_version(),
     description="Converts numbers to italian words.",
     long_description=get_long_description(),
+    long_description_content_type="text/markdown",
     license="MIT license",
     author="Andrea Galvani",
     author_email="Andrea.Galvani96@outlook.com",
